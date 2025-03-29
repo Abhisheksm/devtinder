@@ -22,8 +22,9 @@ router.post('/signup', async (req, res) => {
             password: hashPassword
         })  //It creates a new instance of user modal.
         let result = await user.save() // returns a promise and saves the newly created instance in the database.
-        //res.send(result)
-        res.send('User Signed up successfully.')
+        const token = await result.getJwt()
+        res.cookie("token",token)
+        res.json({message: 'User Signed up successfully.', data: result})
     }
     catch (err) {
         res.status(400).send('Error occured while signing up : ' + err)
