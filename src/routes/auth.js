@@ -67,7 +67,7 @@ router.post('/logout', async(req, res)=>{
         expires: new Date(Date.now())
     })
 
-    res.cookie("token", "", {
+    res.cookie("token", null, {
     httpOnly: true,
     secure: true,     
     sameSite: "none",    
