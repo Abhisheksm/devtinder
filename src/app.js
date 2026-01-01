@@ -7,7 +7,8 @@ const cors = require('cors')
 
 app.use(cors({
     //To solve cors issue
-    origin: 'http://localhost:5173', 
+    //origin: 'http://localhost:5173', 
+    origin: 'https://devtinderweb-1.netlify.app/',
     //backend configuration to send cookies
     credentials: true}))
 /*
