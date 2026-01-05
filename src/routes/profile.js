@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt')
 const router = express.Router()
 const validator = require('validator')
 
-router.get('/profile/view', userAuth, async (req, res)=>{
+router.get('/api/profile/view', userAuth, async (req, res)=>{
     try{
             const user = req.user
             res.send(user)
@@ -16,7 +16,7 @@ router.get('/profile/view', userAuth, async (req, res)=>{
     }
 })
 
-router.patch('/profile/edit', userAuth, async(req, res)=>{
+router.patch('/api/profile/edit', userAuth, async(req, res)=>{
     try{
        if(!validateEditProfileData(req))
        {
@@ -38,7 +38,7 @@ router.patch('/profile/edit', userAuth, async(req, res)=>{
     }
 })
 
-router.patch('/profile/changePassword', userAuth, async(req, res)=>{
+router.patch('/api/profile/changePassword', userAuth, async(req, res)=>{
 
     try{
         const {currentPassword, newPassword} = req.body

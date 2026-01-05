@@ -5,12 +5,16 @@ const app = express();
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
-app.use(cors({
-    //To solve cors issue
-    //origin: 'http://localhost:5173', 
-    origin: 'https://devtinderweb-1.netlify.app',
-    //backend configuration to send cookies
-    credentials: true}))
+app.use(
+    cors({
+    origin: [
+      "http://localhost:5173",
+      "https://devtinderweb-1.netlify.app"
+    ],
+    credentials: true
+  })
+)
+
 /*
 express.json() is the middleware used to parse the JSON which is coming from req body to Javascript object.
 */

@@ -6,7 +6,7 @@ const User = require('../models/user')
 const router = express.Router()
 
 //Get all the pending connection requests of the logged in user.
-router.get('/user/requests/received', userAuth, async (req, res) => {
+router.get('/api/user/requests/received', userAuth, async (req, res) => {
     try {
         const loggedInUser = req.user
 
@@ -26,7 +26,7 @@ router.get('/user/requests/received', userAuth, async (req, res) => {
 })
 
 //Get the connections of the logged in user.
-router.get('/user/connections', userAuth, async (req, res) => {
+router.get('/api/user/connections', userAuth, async (req, res) => {
     try {
         const loggedInUser = req.user
 
@@ -55,7 +55,7 @@ router.get('/user/connections', userAuth, async (req, res) => {
     }
 })
 
-router.get('/feed', userAuth, async (req, res) => {
+router.get('/api/feed', userAuth, async (req, res) => {
     try {
         const loggedInUser = req.user
         const page = parseInt(req.query.page) || 1

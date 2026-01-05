@@ -6,7 +6,7 @@ const { validateSignUpData } = require('../utils/validation')
 const User = require('../models/user');
 const router = express.Router()
 
-router.post('/signup', async (req, res) => {
+router.post('/api/signup', async (req, res) => {
     console.log('req', req.body)
 
     try {
@@ -31,7 +31,7 @@ router.post('/signup', async (req, res) => {
     }
 })
 
-router.post('/login', async (req, res) => {
+router.post('/api/login', async (req, res) => {
     const { emailId, password } = req.body
     try {
         if (!validator.isEmail(emailId)) throw new Error('Please enter valid Email Id')
@@ -62,7 +62,7 @@ router.post('/login', async (req, res) => {
     }
 })
 
-router.post('/logout', async(req, res)=>{
+router.post('/api/logout', async(req, res)=>{
     res.cookie("token", null ,{
         expires: new Date(Date.now())
     })

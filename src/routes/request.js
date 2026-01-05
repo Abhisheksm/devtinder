@@ -6,7 +6,7 @@ const ConnectionRequest = require('../models/connectionRequest')
 const User = require('../models/user')
 
 
-router.post('/request/send/:status/:toUserId', userAuth,  async(req, res)=>{
+router.post('/api/request/send/:status/:toUserId', userAuth,  async(req, res)=>{
    try{
       const fromUserId = req.user._id
       const toUserId = req.params.toUserId
@@ -69,7 +69,7 @@ router.post('/request/send/:status/:toUserId', userAuth,  async(req, res)=>{
    }
 })
 
-router.post('/request/review/:status/:requestId', userAuth, async (req, res)=>{
+router.post('/api/request/review/:status/:requestId', userAuth, async (req, res)=>{
     try{
 
         const loggedInUser = req.user
