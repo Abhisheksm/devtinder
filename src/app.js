@@ -5,15 +5,28 @@ const app = express();
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
-app.use(
-    cors({
-    origin: [
-      "http://localhost:5173",
-      "https://devtinderweb-1.netlify.app"
-    ],
-    credentials: true
-  })
-)
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://devtinderweb-1.netlify.app'
+]
+
+
+const corsOptions = {
+  origin(origin, callback) {
+    // allow non-browser clients (like Postman) that may not send origin
+    if (!origin) return callback(null, true)
+    if (allowedOrigins.includes(origin)) return callback(null, true)
+    return callback(new Error('Not allowed by CORS'))
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT', 'OPTIONS'],
+  // Let cors package reflect requested headers from preflight automatically.
+  // Hardcoding this list can break PATCH when frontend sends additional headers.
+  optionsSuccessStatus: 204
+}
+
+app.use(cors(corsOptions))
+app.options('*', cors(corsOptions))
 
 /*
 express.json() is the middleware used to parse the JSON which is coming from req body to Javascript object.
