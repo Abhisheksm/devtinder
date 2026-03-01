@@ -20,6 +20,7 @@ const corsOptions = {
   },
   credentials: true,
   methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   // Let cors package reflect requested headers from preflight automatically.
   // Hardcoding this list can break PATCH when frontend sends additional headers.
   optionsSuccessStatus: 204
