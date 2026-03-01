@@ -10,12 +10,18 @@ const allowedOrigins = [
   'https://devtinderweb-1.netlify.app'
 ]
 
+const allowedOriginPatterns = [
+  /^https:\/\/[a-z0-9-]+\.vercel\.app$/i
+]
 
 const corsOptions = {
   origin(origin, callback) {
     // allow non-browser clients (like Postman) that may not send origin
     if (!origin) return callback(null, true)
     if (allowedOrigins.includes(origin)) return callback(null, true)
+    if (allowedOriginPatterns.some((pattern) => pattern.test(origin))) {
+      return callback(null, true)
+    }
     return callback(new Error('Not allowed by CORS'))
   },
   credentials: true,
